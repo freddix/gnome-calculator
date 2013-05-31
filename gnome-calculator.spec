@@ -1,11 +1,11 @@
 Summary:	GNOME calculator
 Name:		gnome-calculator
-Version:	3.8.0
+Version:	3.8.2
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Math
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-calculator/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	69947f4c6703c373513e339078d9c0ef
+# Source0-md5:	1040c061ee791a44a00e1ea7482feb61
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
