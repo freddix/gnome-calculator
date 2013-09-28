@@ -1,23 +1,23 @@
 Summary:	GNOME calculator
 Name:		gnome-calculator
-Version:	3.8.2
+Version:	3.10.0
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Math
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-calculator/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	1040c061ee791a44a00e1ea7482feb61
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-calculator/3.10/%{name}-%{version}.tar.xz
+# Source0-md5:	882e0ee761917e8d8f08f1d1e8f8bac9
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+3-devel
+BuildRequires:	gtk+3-devel >= 3.10.0
 BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	pkg-config
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib-gio-gsettings
+Requires(post,postun):	glib-gio-gsettings >= 1:2.38.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,7 +27,7 @@ gcalctool is a simple calculator that performs a variety of functions.
 %setup -q
 
 # kill gnome common deps
-sed -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
+%{__sed} -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
     -i -e 's/GNOME_MAINTAINER_MODE_DEFINES//g'	\
     -i -e 's/GNOME_COMMON_INIT//g'		\
     -i -e 's/GNOME_CXX_WARNINGS.*//g'		\
@@ -49,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,en@shaw}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,en@shaw}
 
 %find_lang %{name} --with-gnome
 
@@ -68,7 +68,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_bindir}/gcalccmd
 %attr(755,root,root) %{_bindir}/gnome-calculator
-%{_datadir}/%{name}
 %{_datadir}/glib-2.0/schemas/org.gnome.calculator.gschema.xml
 %{_desktopdir}/*.desktop
 %{_mandir}/man1/*
