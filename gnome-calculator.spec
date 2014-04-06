@@ -1,18 +1,18 @@
 Summary:	GNOME calculator
 Name:		gnome-calculator
-Version:	3.10.2
+Version:	3.12.0
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Math
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-calculator/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	6537af0408ebf4becb122c7a6e78f1d8
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-calculator/3.12/%{name}-%{version}.tar.xz
+# Source0-md5:	b137d7f0d979e5eac9a2f11a83612957
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+3-devel >= 3.10.0
+BuildRequires:	gtk+3-devel >= 3.12.0
 BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	pkg-config
