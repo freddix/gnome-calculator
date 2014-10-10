@@ -1,29 +1,40 @@
 Summary:	GNOME calculator
 Name:		gnome-calculator
-Version:	3.12.1
+Version:	3.14.0
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Math
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-calculator/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	fda401b6d19df8c65b295c9d51155d8e
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-calculator/3.14/%{name}-%{version}.tar.xz
+# Source0-md5:	2b3cf2462385851182d6119006546483
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+3-devel >= 3.12.0
+BuildRequires:	gtksourceview3-devel >= 3.14.0
 BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	pkg-config
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib-gio-gsettings >= 1:2.38.0
+Requires(post,postun):	glib-gio-gsettings >= 1:2.42.0
 Obsoletes:	gcalctool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%description
-gcalctool is a simple calculator that performs a variety of functions.
+%define		_libexecdir	%{_libdir}/gnome-calculator
 
+%description
+GNOME calculator is a simple calculator that performs a variety
+of functions.
+
+%package shell-search-provider
+Summary:	GNOME Shell search provider
+Group:		X11/Applications
+Requires:	%{name} = %{version}-%{release}
+Requires:	gnome-shell
+
+%description shell-search-provider
+Search result provider for GNOME Shell.
 %prep
 %setup -q
 
@@ -50,8 +61,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,en@shaw}
-
 %find_lang %{name} --with-gnome
 
 %clean
@@ -72,4 +81,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.gnome.calculator.gschema.xml
 %{_desktopdir}/*.desktop
 %{_mandir}/man1/*
+
+%files shell-search-provider
+%defattr(644,root,root,755)
+%dir %{_libexecdir}
+%attr(755,root,root) %{_libexecdir}/gnome-calculator-search-provider
+%{_datadir}/gnome-shell/search-providers/gnome-calculator-search-provider.ini
+%{_datadir}/dbus-1/services/org.gnome.Calculator.SearchProvider.service
+%{_datadir}/gnome-shell/search-providers/gnome-calculator-search-provider.ini
 
